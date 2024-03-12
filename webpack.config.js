@@ -2,15 +2,15 @@ const path = require('path');
 
 module.exports = {
   // 読み込むファイルを指定
-  entry: './src/index.ts',
+  entry: './src/index.tsx',
 
   module: {
     // build 時に行う追加処理
     rules: [
-      // .ts ファイルに対して ts-loader を実行する
+      // .ts または .tsx ファイルに対して ts-loader(TypeScript の変換) を実行する
       // exclude: build 対象外とするファイル
       {
-        test: /\.ts$/,
+        test: /\.tsx?$/,
         use: 'ts-loader',
         exclude: /node_modules/,
       },
@@ -19,7 +19,7 @@ module.exports = {
 
   // モジュールとして解決するファイルの拡張子を指定
   resolve: {
-    extensions: ['.ts'],
+    extensions: ['.js', 'ts', '.tsx'],
   },
 
   // 出力するファイルを指定
