@@ -29,4 +29,14 @@ module.exports = {
     filename: 'index.js',
     publicPath: 'dist/',
   },
+
+  // webpack-dev-server の設定
+  // publicPath: ビルドしたファイルへのパス
+  // hot: ファイルを変更時にブラウザに反映
+  // open: 起動時にブラウザで開く
+  devServer: {
+    publicPath: '/dist/',
+    hot: true,
+    open: true,
+  },
 };
