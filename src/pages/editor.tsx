@@ -1,5 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
+import { useState } from 'react'
 
 const Header = styled.header`
   font-size: 1.5rem;
@@ -45,13 +46,22 @@ const Preview = styled.div`
 
 // エディタ画面の関数コンポーネントを宣言
 export const Editor: React.FC = () => {
+
+  // const [値, 値をセットする関数] = useState<型>(初期値)
+  const [text, setText] = useState<string>('')
+
   return(
     <>
       <Header>
         Markdown App
       </Header>
       <Wrapper>
-        <TextArea value="テキスト入力" />
+        <TextArea
+          onChange = {(event) => {
+            setText(event.target.value)
+          }}
+          value = {text}
+        />
         <Preview>プレビュー</Preview>
       </Wrapper>
     </>
