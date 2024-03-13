@@ -44,11 +44,13 @@ const Preview = styled.div`
   width: 50vw;
 `
 
+const StorageKey = 'editorText'
+
 // エディタ画面の関数コンポーネントを宣言
 export const Editor: React.FC = () => {
 
   // const [値, 値をセットする関数] = useState<型>(初期値)
-  const [text, setText] = useState<string>('')
+  const [text, setText] = useState<string>(localStorage.getItem(StorageKey) || '')
 
   return(
     <>
@@ -58,7 +60,9 @@ export const Editor: React.FC = () => {
       <Wrapper>
         <TextArea
           onChange = {(event) => {
-            setText(event.target.value)
+            const changedText = event.target.value
+            localStorage.setItem(StorageKey, changedText)
+            setText(changedText)
           }}
           value = {text}
         />
