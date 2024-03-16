@@ -1,6 +1,6 @@
-import * as React from 'react'
-import styled from 'styled-components'
-import { useState } from 'react'
+import * as React from 'react';
+import styled from 'styled-components';
+import { useStateWithStorage } from '../hooks/use_state_with_storage';
 
 const Header = styled.header`
   font-size: 1.5rem;
@@ -11,7 +11,7 @@ const Header = styled.header`
   position: fixed;
   right: 0;
   top: 0;
-`
+`;
 
 const Wrapper = styled.div`
   bottom: 0;
@@ -19,7 +19,7 @@ const Wrapper = styled.div`
   position: fixed;
   right: 0;
   top: 3rem;
-`
+`;
 
 const TextArea = styled.textarea`
   border-right: 1px solid silver;
@@ -31,7 +31,7 @@ const TextArea = styled.textarea`
   position: absolute;
   top: 0;
   width: 50vw;
-`
+`;
 
 const Preview = styled.div`
   border-top: 1px solid silver;
@@ -42,32 +42,28 @@ const Preview = styled.div`
   right: 0;
   top: 0;
   width: 50vw;
-`
+`;
 
-const StorageKey = 'editorText'
+const StorageKey = 'editorText';
 
 // エディタ画面の関数コンポーネントを宣言
 export const Editor: React.FC = () => {
+  // text    : valueの値を設定
+  // setText : setValueWithStorage関数を設定
+  const [text, setText] = useStateWithStorage('', StorageKey);
 
-  // const [値, 値をセットする関数] = useState<型>(初期値)
-  const [text, setText] = useState<string>(localStorage.getItem(StorageKey) || '')
-
-  return(
+  return (
     <>
-      <Header>
-        Markdown App
-      </Header>
+      <Header>Markdown App</Header>
       <Wrapper>
         <TextArea
-          onChange = {(event) => {
-            const changedText = event.target.value
-            localStorage.setItem(StorageKey, changedText)
-            setText(changedText)
+          onChange={(event) => {
+            setText(event.target.value);
           }}
-          value = {text}
+          value={text}
         />
         <Preview>プレビュー</Preview>
       </Wrapper>
     </>
-  )
-}
+  );
+};
