@@ -19,7 +19,7 @@ module.exports = {
 
   // モジュールとして解決するファイルの拡張子を指定
   resolve: {
-    extensions: ['.js', 'ts', '.tsx'],
+    extensions: ['.js', '.ts', '.tsx'],
   },
 
   // 出力するファイルを指定
